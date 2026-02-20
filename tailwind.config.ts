@@ -26,8 +26,8 @@ const config: Config = {
         emerald: "#10b981"
       },
       fontFamily: {
-        sans: ["var(--font-epilogue)", "ui-sans-serif", "system-ui"],
-        display: ["var(--font-syne)", "ui-sans-serif", "system-ui"]
+        sans: ["var(--font-dm-sans)", "ui-sans-serif", "system-ui"],
+        display: ["var(--font-fraunces)", "ui-serif", "Georgia"]
       }
     }
   },
