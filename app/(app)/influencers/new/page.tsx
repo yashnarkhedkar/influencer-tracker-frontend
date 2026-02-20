@@ -8,6 +8,7 @@ import Button from "@/components/ui/button";
 import { SelectContent, SelectItem, SelectRoot, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { useCreateInfluencer, useRefreshInfluencerStats } from "@/hooks/useInfluencers";
 import { useToast } from "@/components/providers/ToastProvider";
+import type { Platform } from "@/lib/types";
 
 export default function NewInfluencerPage() {
   const router = useRouter();
@@ -17,7 +18,7 @@ export default function NewInfluencerPage() {
 
   const [name, setName] = useState("");
   const [handle, setHandle] = useState("");
-  const [platform, setPlatform] = useState("youtube");
+  const [platform, setPlatform] = useState<Platform>("youtube");
   const [errors, setErrors] = useState<Record<string, string>>({});
 
   const validate = () => {
@@ -69,7 +70,7 @@ export default function NewInfluencerPage() {
           </label>
           <div>
             <label className="text-sm font-medium text-text-dim">Platform</label>
-            <SelectRoot value={platform} onValueChange={setPlatform}>
+            <SelectRoot value={platform} onValueChange={(value) => setPlatform(value as Platform)}>
               <SelectTrigger className="mt-2">
                 <SelectValue placeholder="Select platform" />
               </SelectTrigger>
