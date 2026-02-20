@@ -19,7 +19,7 @@ export const metadata = {
   description: "Plan, manage, and track influencer campaigns end-to-end."
 };
 
-export default function RootLayout({ children }) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
       <body className={`${dmSans.variable} ${fraunces.variable} font-sans`}>

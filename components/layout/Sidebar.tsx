@@ -19,9 +19,9 @@ export default function Sidebar() {
       <div className="px-6 py-6">
         <div className="flex items-center gap-3 font-display text-lg font-semibold">
           <span className="grid h-9 w-9 place-items-center rounded-lg bg-gradient-to-br from-cyan to-violet text-xs font-bold text-black shadow-[0_0_18px_rgba(0,212,255,0.35)]">
-            FX
+            IT
           </span>
-          Fluxr
+          Influencer Tracker
         </div>
       </div>
       <div className="px-6 pb-2 text-[10px] uppercase tracking-[0.2em] text-text-dim">Overview</div>
