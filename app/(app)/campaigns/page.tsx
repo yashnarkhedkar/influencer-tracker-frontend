@@ -67,7 +67,7 @@ export default function CampaignsPage() {
         </SelectRoot>
       </div>
 
-      {campaignsQuery.isLoading ? (
+      {campaignsQuery.isLoading || campaignsQuery.isFetching ? (
         <div className="space-y-3">
           <Skeleton className="h-14" />
           <Skeleton className="h-64" />

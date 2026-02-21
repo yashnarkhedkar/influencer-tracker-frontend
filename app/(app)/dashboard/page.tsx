@@ -26,6 +26,13 @@ export default function DashboardPage() {
   const overTime = useCampaignsOverTime();
   const platform = usePlatformBreakdown();
   const ai = useAiInsights();
+  const summaryLoading = summary.isLoading || summary.isFetching;
+  const byStatusLoading = byStatus.isLoading || byStatus.isFetching;
+  const budgetLoading = budget.isLoading || budget.isFetching;
+  const overTimeLoading = overTime.isLoading || overTime.isFetching;
+  const platformLoading = platform.isLoading || platform.isFetching;
+  const aiLoading = ai.isLoading || ai.isFetching;
+  const aiRefreshing = ai.isFetching && !ai.isLoading;
 
   return (
     <div className="space-y-6">
@@ -35,7 +42,7 @@ export default function DashboardPage() {
       />
 
       <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
-        {summary.isLoading ? (
+        {summaryLoading ? (
           Array.from({ length: 4 }).map((_, index) => <Skeleton key={index} className="h-28" />)
         ) : (
           <>
@@ -68,20 +75,20 @@ export default function DashboardPage() {
       </div>
 
       <div className="grid gap-6 lg:grid-cols-2">
-        <StatusDonutChart data={byStatus.data} isLoading={byStatus.isLoading} />
-        <BudgetBarChart data={budget.data} isLoading={budget.isLoading} />
+        <StatusDonutChart data={byStatus.data} isLoading={byStatusLoading} />
+        <BudgetBarChart data={budget.data} isLoading={budgetLoading} />
       </div>
 
       <div className="grid gap-6 lg:grid-cols-2">
-        <CampaignsLineChart data={overTime.data} isLoading={overTime.isLoading} />
-        <PlatformPieChart data={platform.data} isLoading={platform.isLoading} />
+        <CampaignsLineChart data={overTime.data} isLoading={overTimeLoading} />
+        <PlatformPieChart data={platform.data} isLoading={platformLoading} />
       </div>
 
       <AIInsightsPanel
         insights={ai.data?.insights}
-        isLoading={ai.isLoading}
+        isLoading={aiLoading}
         onRefresh={() => ai.refetch()}
-        isRefreshing={ai.isFetching}
+        isRefreshing={aiRefreshing}
       />
     </div>
   );
