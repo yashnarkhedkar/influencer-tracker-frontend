@@ -50,7 +50,16 @@ export default function StatusDonutChart({
         <h3 className="text-sm font-semibold text-text">Campaigns By Status</h3>
       </div>
       {isLoading ? (
-        <Skeleton className="h-64 w-full" />
+        <div className="space-y-4">
+          <div className="flex justify-center">
+            <Skeleton className="h-44 w-44 rounded-full" />
+          </div>
+          <div className="flex flex-wrap justify-center gap-3">
+            {Array.from({ length: 4 }).map((_, index) => (
+              <Skeleton key={index} className="h-3 w-20" />
+            ))}
+          </div>
+        </div>
       ) : (
         <div className="h-72">
           <ResponsiveContainer width="100%" height="100%">

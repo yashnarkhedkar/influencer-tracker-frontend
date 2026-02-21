@@ -5,9 +5,7 @@ import { ChevronDown } from "lucide-react";
 import { cn } from "@/lib/utils";
 import type React from "react";
 
-export const SelectRoot = (props: React.ComponentPropsWithoutRef<typeof Select.Root>) => (
-  <Select.Root modal={false} {...props} />
-);
+export const SelectRoot = Select.Root;
 export const SelectValue = Select.Value;
 export const SelectTrigger = ({
   className,

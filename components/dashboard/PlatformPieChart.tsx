@@ -24,7 +24,16 @@ export default function PlatformPieChart({
         <h3 className="text-sm font-semibold text-text">Platform Breakdown</h3>
       </div>
       {isLoading ? (
-        <Skeleton className="h-64 w-full" />
+        <div className="space-y-4">
+          <div className="flex justify-center">
+            <Skeleton className="h-40 w-40 rounded-full" />
+          </div>
+          <div className="flex flex-wrap justify-center gap-3">
+            {Array.from({ length: 3 }).map((_, index) => (
+              <Skeleton key={index} className="h-3 w-20" />
+            ))}
+          </div>
+        </div>
       ) : (
         <div className="h-64">
           <ResponsiveContainer width="100%" height="100%">

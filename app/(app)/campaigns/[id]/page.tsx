@@ -78,7 +78,22 @@ export default function CampaignDetailPage() {
       />
 
       {campaignQuery.isLoading ? (
-        <Skeleton className="h-64" />
+        <Card className="p-6">
+          <div className="grid gap-6 md:grid-cols-2">
+            {Array.from({ length: 4 }).map((_, index) => (
+              <div key={index} className="space-y-2">
+                <Skeleton className="h-3 w-20" />
+                <Skeleton className="h-4 w-32" />
+              </div>
+            ))}
+            <div className="md:col-span-2 space-y-2">
+              <Skeleton className="h-3 w-24" />
+              <Skeleton className="h-3 w-full" />
+              <Skeleton className="h-3 w-5/6" />
+              <Skeleton className="h-3 w-4/6" />
+            </div>
+          </div>
+        </Card>
       ) : campaign ? (
         <Card className="p-6">
           <div className="grid gap-6 md:grid-cols-2">
@@ -117,7 +132,20 @@ export default function CampaignDetailPage() {
           <h3 className="text-sm font-semibold text-text">Assigned Influencers</h3>
         </div>
         {influencersQuery.isLoading ? (
-          <Skeleton className="h-32" />
+          <div className="space-y-3">
+            {Array.from({ length: 3 }).map((_, index) => (
+              <div key={index} className="rounded-lg border border-border bg-surface-2 px-4 py-3">
+                <div className="flex flex-wrap items-center justify-between gap-2">
+                  <div className="space-y-2">
+                    <Skeleton className="h-4 w-28" />
+                    <Skeleton className="h-3 w-20" />
+                  </div>
+                  <Skeleton className="h-3 w-20" />
+                </div>
+                <Skeleton className="mt-2 h-3 w-24" />
+              </div>
+            ))}
+          </div>
         ) : influencersQuery.data && influencersQuery.data.length > 0 ? (
           <div className="space-y-3">
             {influencersQuery.data.map((assignment) => {

@@ -98,7 +98,16 @@ export default function InfluencerDetailPage() {
       />
 
       {influencerQuery.isLoading ? (
-        <Skeleton className="h-40" />
+        <Card className="p-6">
+          <div className="grid gap-4 md:grid-cols-3">
+            {Array.from({ length: 3 }).map((_, index) => (
+              <div key={index} className="space-y-2">
+                <Skeleton className="h-3 w-20" />
+                <Skeleton className="h-4 w-28" />
+              </div>
+            ))}
+          </div>
+        </Card>
       ) : influencer ? (
         <Card className="p-6">
           <div className="grid gap-4 md:grid-cols-3">
@@ -129,7 +138,19 @@ export default function InfluencerDetailPage() {
       <Card className="p-6">
         <h3 className="text-sm font-semibold text-text">Campaigns</h3>
         {assignmentsQuery.isLoading ? (
-          <Skeleton className="h-24" />
+          <div className="mt-4 space-y-3">
+            {Array.from({ length: 3 }).map((_, index) => (
+              <div key={index} className="rounded-lg border border-border bg-surface-2 px-4 py-3">
+                <div className="flex flex-wrap items-center justify-between gap-2">
+                  <div className="space-y-2">
+                    <Skeleton className="h-4 w-32" />
+                    <Skeleton className="h-3 w-20" />
+                  </div>
+                  <Skeleton className="h-3 w-20" />
+                </div>
+              </div>
+            ))}
+          </div>
         ) : assignments.length > 0 ? (
           <div className="mt-4 space-y-3">
             {assignments.map((assignment) => {

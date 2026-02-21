@@ -2,6 +2,12 @@
 
 A Next.js 14 (App Router) frontend for managing influencer campaigns, performance analytics, and AI-assisted creative tooling. The UI focuses on a real-time dashboard, campaign operations, and influencer intelligence.
 
+![Landing Preview](landing-preview.png)
+
+## Deployment
+- Vercel deployment: `influencer-tracker-frontend-lc7u09zat-yashnarkhedkars-projects.vercel.app`
+- Backend deployment: Vercel (as provided for this project)
+
 ## Features
 - Landing page with product overview and onboarding entry points.
 - Dashboard KPIs, charts, and AI insights.
@@ -18,6 +24,7 @@ A Next.js 14 (App Router) frontend for managing influencer campaigns, performanc
 - Recharts
 - Radix UI
 - Lucide Icons
+- Vercel (deployment)
 
 ## Requirements
 - Node.js 18.17+ (recommended for Next.js 14)
@@ -35,7 +42,7 @@ npm install
 Create a `.env.local` file in the project root:
 
 ```bash
-NEXT_PUBLIC_API_BASE_URL=http://localhost:8000
+NEXT_PUBLIC_API_BASE_URL=https://influencer-tracker-frontend-lc7u09zat-yashnarkhedkars-projects.vercel.app
 ```
 
 3. Start the dev server:
@@ -44,7 +51,7 @@ NEXT_PUBLIC_API_BASE_URL=http://localhost:8000
 npm run dev
 ```
 
-The app will be available at `http://localhost:3000`.
+The app will be available at `https://influencer-tracker-frontend-lc7u09zat-yashnarkhedkars-projects.vercel.app`.
 
 ## Scripts
 - `npm run dev` - Start the development server
@@ -78,6 +85,29 @@ See `lib/api.ts` for the full set of API calls.
 - `hooks/` - React Query hooks
 - `lib/` - API client, types, formatting utilities
 - `tailwind.config.ts` - Tailwind theme configuration
+
+## Frontend Details
+- Dashboard: KPI cards, donut/bar/line/pie charts, and AI insights panel with manual refresh.
+- Campaigns: filterable table, detail view with assignments, and edit/create flows.
+- Influencers: card grid, detail view with campaign assignments, and stats refresh.
+- Loading states: skeletons mirror real UI structure for faster perceived performance.
+- Manual refresh: explicit refresh buttons for dashboard, campaigns, and influencers.
+
+## Best Practices Applied
+- Centralized data fetching with React Query hooks.
+- Disabled refetch-on-focus to reduce unnecessary backend load.
+- Manual refresh actions to control network traffic.
+- Consistent skeleton states that match content layout.
+- Reusable UI primitives (cards, buttons, dialogs, selects).
+- Typed API and UI data using shared TypeScript models.
+
+## Future Enhancements
+1. Optimistic updates for campaign/influencer mutations.
+2. Pagination, search, and advanced filters for campaigns/influencers.
+3. Role-based access control and audit logging in the UI.
+4. Offline-friendly caching with background sync and stale-while-revalidate.
+5. Export reports (CSV/PDF) for campaigns and influencer performance.
+6. Real-time updates with WebSockets/SSE for live dashboards.
 
 ## Notes
 - This is a frontend-only repo; it requires a compatible backend API to power data.

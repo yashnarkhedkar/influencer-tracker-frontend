@@ -4,6 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import PageHeader from "@/components/layout/PageHeader";
 import Button from "@/components/ui/button";
+import Card from "@/components/ui/card";
 import CampaignTable from "@/components/campaigns/CampaignTable";
 import Skeleton from "@/components/ui/skeleton";
 import { SelectContent, SelectItem, SelectRoot, SelectTrigger, SelectValue } from "@/components/ui/select";
@@ -77,11 +78,58 @@ export default function CampaignsPage() {
         </SelectRoot>
       </div>
 
-      {campaignsQuery.isLoading || campaignsQuery.isFetching ? (
-        <div className="space-y-3">
-          <Skeleton className="h-14" />
-          <Skeleton className="h-64" />
-        </div>
+      {campaignsQuery.isLoading ? (
+        <Card className="overflow-hidden">
+          <div className="overflow-x-auto">
+            <table className="w-full text-left text-sm">
+              <thead className="bg-surface-2 text-xs uppercase text-text-dim">
+                <tr>
+                  <th className="px-6 py-3">Title</th>
+                  <th className="px-6 py-3">Platform</th>
+                  <th className="px-6 py-3">Status</th>
+                  <th className="px-6 py-3">Budget Total</th>
+                  <th className="px-6 py-3">Budget Spent</th>
+                  <th className="px-6 py-3">Dates</th>
+                  <th className="px-6 py-3 text-right">Actions</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-border">
+                {Array.from({ length: 6 }).map((_, index) => (
+                  <tr key={index}>
+                    <td className="px-6 py-4">
+                      <Skeleton className="h-4 w-40" />
+                    </td>
+                    <td className="px-6 py-4">
+                      <Skeleton className="h-5 w-20 rounded-full" />
+                    </td>
+                    <td className="px-6 py-4">
+                      <Skeleton className="h-5 w-16 rounded-full" />
+                    </td>
+                    <td className="px-6 py-4">
+                      <Skeleton className="h-4 w-20" />
+                    </td>
+                    <td className="px-6 py-4">
+                      <Skeleton className="h-2 w-24 rounded-full" />
+                    </td>
+                    <td className="px-6 py-4">
+                      <div className="space-y-2">
+                        <Skeleton className="h-3 w-24" />
+                        <Skeleton className="h-3 w-20" />
+                      </div>
+                    </td>
+                    <td className="px-6 py-4">
+                      <div className="flex items-center justify-end gap-3">
+                        <Skeleton className="h-4 w-4 rounded-full" />
+                        <Skeleton className="h-4 w-4 rounded-full" />
+                        <Skeleton className="h-4 w-4 rounded-full" />
+                      </div>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </Card>
       ) : (
         <CampaignTable
           campaigns={campaignsQuery.data ?? []}

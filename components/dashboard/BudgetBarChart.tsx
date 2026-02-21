@@ -18,7 +18,18 @@ export default function BudgetBarChart({
         <h3 className="text-sm font-semibold text-text">Budget Overview</h3>
       </div>
       {isLoading ? (
-        <Skeleton className="h-64 w-full" />
+        <div className="space-y-4">
+          <div className="grid h-48 grid-cols-6 items-end gap-3">
+            {Array.from({ length: 6 }).map((_, index) => (
+              <Skeleton key={index} className="h-full w-full" style={{ height: `${40 + index * 12}px` }} />
+            ))}
+          </div>
+          <div className="flex justify-between">
+            {Array.from({ length: 5 }).map((_, index) => (
+              <Skeleton key={index} className="h-2 w-10" />
+            ))}
+          </div>
+        </div>
       ) : (
         <div className="h-64">
           <ResponsiveContainer width="100%" height="100%">

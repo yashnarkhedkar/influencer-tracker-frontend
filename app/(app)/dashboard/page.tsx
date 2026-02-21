@@ -8,6 +8,7 @@ import CampaignsLineChart from "@/components/dashboard/CampaignsLineChart";
 import PlatformPieChart from "@/components/dashboard/PlatformPieChart";
 import AIInsightsPanel from "@/components/dashboard/AIInsightsPanel";
 import Button from "@/components/ui/button";
+import Card from "@/components/ui/card";
 import Skeleton from "@/components/ui/skeleton";
 import { formatCurrency } from "@/lib/format";
 import {
@@ -72,7 +73,17 @@ export default function DashboardPage() {
 
       <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
         {summaryLoading ? (
-          Array.from({ length: 4 }).map((_, index) => <Skeleton key={index} className="h-28" />)
+          Array.from({ length: 4 }).map((_, index) => (
+            <Card key={index} className="p-5">
+              <div className="flex items-center justify-between">
+                <div className="space-y-2">
+                  <Skeleton className="h-3 w-24" />
+                  <Skeleton className="h-6 w-16" />
+                </div>
+                <Skeleton className="h-10 w-10 rounded-full" />
+              </div>
+            </Card>
+          ))
         ) : (
           <>
             <KPICard

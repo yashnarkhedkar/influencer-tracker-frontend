@@ -18,7 +18,14 @@ export default function CampaignsLineChart({
         <h3 className="text-sm font-semibold text-text">Campaigns Over Time</h3>
       </div>
       {isLoading ? (
-        <Skeleton className="h-64 w-full" />
+        <div className="space-y-4">
+          <Skeleton className="h-40 w-full" />
+          <div className="flex justify-between">
+            {Array.from({ length: 6 }).map((_, index) => (
+              <Skeleton key={index} className="h-2 w-8" />
+            ))}
+          </div>
+        </div>
       ) : (
         <div className="h-64">
           <ResponsiveContainer width="100%" height="100%">

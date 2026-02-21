@@ -3,6 +3,7 @@
 import Link from "next/link";
 import PageHeader from "@/components/layout/PageHeader";
 import Button from "@/components/ui/button";
+import Card from "@/components/ui/card";
 import Skeleton from "@/components/ui/skeleton";
 import InfluencerCard from "@/components/influencers/InfluencerCard";
 import { useInfluencers } from "@/hooks/useInfluencers";
@@ -32,10 +33,22 @@ export default function InfluencersPage() {
         }
       />
 
-      {influencersQuery.isLoading || influencersQuery.isFetching ? (
+      {influencersQuery.isLoading ? (
         <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
           {Array.from({ length: 6 }).map((_, index) => (
-            <Skeleton key={index} className="h-36" />
+            <Card key={index} className="p-5">
+              <div className="flex items-start justify-between">
+                <div className="space-y-2">
+                  <Skeleton className="h-4 w-32" />
+                  <Skeleton className="h-3 w-24" />
+                </div>
+                <Skeleton className="h-5 w-20 rounded-full" />
+              </div>
+              <div className="mt-4 space-y-2">
+                <Skeleton className="h-3 w-24" />
+                <Skeleton className="h-5 w-28" />
+              </div>
+            </Card>
           ))}
         </div>
       ) : influencersQuery.data && influencersQuery.data.length > 0 ? (
