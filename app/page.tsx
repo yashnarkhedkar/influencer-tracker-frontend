@@ -188,7 +188,6 @@ export default function LandingPage() {
 
         <section className="mx-auto max-w-6xl px-6 pb-16">
           <p className="text-xs uppercase tracking-[0.3em] text-cyan">Contents</p>
-          <h2 className="mt-4 font-display text-2xl font-semibold md:text-3xl">What’s in this document</h2>
           <div className="mt-6 grid gap-3 md:grid-cols-4">
             {tocItems.map((item, index) => (
               <a

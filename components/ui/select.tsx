@@ -5,7 +5,9 @@ import { ChevronDown } from "lucide-react";
 import { cn } from "@/lib/utils";
 import type React from "react";
 
-export const SelectRoot = Select.Root;
+export const SelectRoot = (props: React.ComponentPropsWithoutRef<typeof Select.Root>) => (
+  <Select.Root modal={false} {...props} />
+);
 export const SelectValue = Select.Value;
 export const SelectTrigger = ({
   className,
@@ -28,6 +30,7 @@ export const SelectTrigger = ({
 
 export const SelectContent = ({
   className,
+  children,
   ...props
 }: React.ComponentPropsWithoutRef<typeof Select.Content>) => (
   <Select.Portal>
@@ -36,8 +39,12 @@ export const SelectContent = ({
         "z-50 overflow-hidden rounded-md border border-border bg-surface-2 shadow-lg",
         className
       )}
+      position="popper"
+      sideOffset={6}
       {...props}
-    />
+    >
+      <Select.Viewport className="p-1">{children}</Select.Viewport>
+    </Select.Content>
   </Select.Portal>
 );
 

@@ -35,9 +35,19 @@ export default function CampaignsPage() {
         title="Campaigns"
         subtitle="Manage active campaigns, budgets, and timelines."
         action={
-          <Link href="/campaigns/new">
-            <Button>New Campaign</Button>
-          </Link>
+          <div className="flex flex-wrap gap-2">
+            <Button
+              type="button"
+              className="bg-transparent text-text shadow-none ring-1 ring-border hover:-translate-y-0"
+              onClick={() => campaignsQuery.refetch()}
+              disabled={campaignsQuery.isFetching}
+            >
+              {campaignsQuery.isFetching ? "Refreshing..." : "Refresh"}
+            </Button>
+            <Link href="/campaigns/new">
+              <Button>New Campaign</Button>
+            </Link>
+          </div>
         }
       />
 

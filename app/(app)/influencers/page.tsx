@@ -16,9 +16,19 @@ export default function InfluencersPage() {
         title="Influencers"
         subtitle="Track key talent and performance across platforms."
         action={
-          <Link href="/influencers/new">
-            <Button>Add Influencer</Button>
-          </Link>
+          <div className="flex flex-wrap gap-2">
+            <Button
+              type="button"
+              className="bg-transparent text-text shadow-none ring-1 ring-border hover:-translate-y-0"
+              onClick={() => influencersQuery.refetch()}
+              disabled={influencersQuery.isFetching}
+            >
+              {influencersQuery.isFetching ? "Refreshing..." : "Refresh"}
+            </Button>
+            <Link href="/influencers/new">
+              <Button>Add Influencer</Button>
+            </Link>
+          </div>
         }
       />
 

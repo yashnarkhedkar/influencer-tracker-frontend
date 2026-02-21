@@ -7,6 +7,7 @@ import BudgetBarChart from "@/components/dashboard/BudgetBarChart";
 import CampaignsLineChart from "@/components/dashboard/CampaignsLineChart";
 import PlatformPieChart from "@/components/dashboard/PlatformPieChart";
 import AIInsightsPanel from "@/components/dashboard/AIInsightsPanel";
+import Button from "@/components/ui/button";
 import Skeleton from "@/components/ui/skeleton";
 import { formatCurrency } from "@/lib/format";
 import {
@@ -33,12 +34,40 @@ export default function DashboardPage() {
   const platformLoading = platform.isLoading || platform.isFetching;
   const aiLoading = ai.isLoading || ai.isFetching;
   const aiRefreshing = ai.isFetching && !ai.isLoading;
+  const dashboardRefreshing =
+    summary.isFetching ||
+    byStatus.isFetching ||
+    budget.isFetching ||
+    overTime.isFetching ||
+    platform.isFetching ||
+    ai.isFetching;
+
+  const handleRefresh = async () => {
+    await Promise.all([
+      summary.refetch(),
+      byStatus.refetch(),
+      budget.refetch(),
+      overTime.refetch(),
+      platform.refetch(),
+      ai.refetch()
+    ]);
+  };
 
   return (
     <div className="space-y-6">
       <PageHeader
         title="Dashboard"
         subtitle="Live campaign performance, budgets, and platform insights."
+        action={
+          <Button
+            type="button"
+            className="bg-transparent text-text shadow-none ring-1 ring-border hover:-translate-y-0"
+            onClick={handleRefresh}
+            disabled={dashboardRefreshing}
+          >
+            {dashboardRefreshing ? "Refreshing..." : "Refresh"}
+          </Button>
+        }
       />
 
       <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
